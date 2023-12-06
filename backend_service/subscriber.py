@@ -23,7 +23,7 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 # Replace 'broker_ip' with the actual IP address of your Mosquitto broker
-broker_ip = "YOUR_BROKER_IP"
+broker_ip = "34.131.138.249"
 client.connect(broker_ip, 1883, 60)
 
 client.loop_forever()
