@@ -1,0 +1,18 @@
+{
+  "name": "your-project-name",
+  "version": "1.0.0",
+  "description": "Your project description",
+  "main": "mqtt_publisher_server.js",
+  "scripts": {
+    "start": "node mqtt_publisher_server.js"
+  },
+  "keywords": [],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io":"4.7.2",
+    "axios": "^0.24.0",
+    "express": "^4.17.1",
+    "mqtt": "^4.3.8"
+  }
+}
