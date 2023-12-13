@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const mqtt = require('mqtt');
+const base64js = require('base64-js');
 const cors = require('cors'); // Import the cors middleware
 
 // ...
@@ -14,67 +15,65 @@ const server = http.createServer(app);
 app.use(cors());
 
 // MQTT broker settings
-const mqttBroker = 'mqtt://localhost'; // Update with your MQTT broker address
-const mqttTopic = 'toimageTopic';
+const mqttBroker = 'mqtt://34.28.62.241';
+const mqttTopic = 'toImageTopic'; // Adjust to match the ESP32 topic
 
-// Set up MQTT client
 const mqttClient = mqtt.connect(mqttBroker);
 
-// Serve HTML file
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Initialize MQTT subscriber
 mqttClient.on('connect', () => {
   console.log('Connected to MQTT broker');
   mqttClient.subscribe(mqttTopic);
 });
 
-// WebSocket and image streaming logic
 const io = require('socket.io')(server, {
   cors: {
-    origin: "http://localhost:3000", // Your React app URL
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"]
   }
 });
 
 let connectedClients = 0;
 
-// Handle new WebSocket connections
 io.on('connection', (socket) => {
   console.log('Client connected');
   connectedClients++;
 
-  // Handle disconnection
   socket.on('disconnect', () => {
     console.log('Client disconnected');
     connectedClients--;
 
-    // If no clients are connected, stop MQTT subscription
     if (connectedClients === 0) {
       mqttClient.unsubscribe(mqttTopic);
     }
   });
 
-  // If it's the first connected client, start MQTT subscription
   if (connectedClients === 1) {
     mqttClient.subscribe(mqttTopic);
   }
 });
 
-// Handle MQTT messages
+
 mqttClient.on('message', (topic, message) => {
+  // Assuming the received message is Base64-encoded
+  const base64String = message.toString('utf8');
+
+  // Decode Base64 to binary
+  const binaryData = base64js.toByteArray(base64String);
+
   // Assuming the message is an image buffer
-  const imageBuffer = Buffer.from(message);
-  console.log('Received image buffer:', imageBuffer);
+  const imageBuffer = Buffer.from(binaryData);
+  console.log('Received image buffer:', binaryData);
 
   // Broadcast the image buffer to all connected clients
   io.emit('image', imageBuffer.toString('base64'));
 });
 
-// Start the server
-const port = 3001; // Update with your desired port
+
+const port = 3001;
 server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
