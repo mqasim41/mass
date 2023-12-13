@@ -2,9 +2,16 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const mqtt = require('mqtt');
+const cors = require('cors'); // Import the cors middleware
+
+// ...
 
 const app = express();
+app.use(cors());
 const server = http.createServer(app);
+
+// Use cors middleware
+app.use(cors());
 
 // MQTT broker settings
 const mqttBroker = 'mqtt://localhost'; // Update with your MQTT broker address
@@ -25,7 +32,13 @@ mqttClient.on('connect', () => {
 });
 
 // WebSocket and image streaming logic
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: "http://localhost:3000", // Your React app URL
+    methods: ["GET", "POST"]
+  }
+});
+
 let connectedClients = 0;
 
 // Handle new WebSocket connections

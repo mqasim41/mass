@@ -10,9 +10,10 @@
   "author": "Your Name",
   "license": "ISC",
   "dependencies": {
-    "socket.io":"4.7.2",
     "axios": "^0.24.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mqtt": "^4.3.8"
+    "mqtt": "^4.3.8",
+    "socket.io": "4.7.2"
   }
 }
