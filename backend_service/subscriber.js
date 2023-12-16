@@ -15,7 +15,7 @@ const server = http.createServer(app);
 app.use(cors());
 
 // MQTT broker settings
-const mqttBroker = 'mqtt://34.28.62.241';
+const mqttBroker = 'mqtt://34.122.153.163';
 const mqttTopic = 'toImageTopic'; // Adjust to match the ESP32 topic
 
 const mqttClient = mqtt.connect(mqttBroker);
@@ -52,25 +52,23 @@ io.on('connection', (socket) => {
   });
 
   if (connectedClients === 1) {
-    mqttClient.subscribe(mqttTopic);
+    mqttClient.subscribe(mqttTopic, { qos: 2 }); // Adjust the QoS value
+
   }
 });
 
 
 mqttClient.on('message', (topic, message) => {
-  // Assuming the received message is Base64-encoded
-  const base64String = message.toString('utf8');
+  // Convert the binary data to Base64
+  const base64Image = message.toString('base64');
 
-  // Decode Base64 to binary
-  const binaryData = base64js.toByteArray(base64String);
+  // Log the Base64-encoded data (optional)
+  console.log('Received Base64-encoded image:', base64Image);
 
-  // Assuming the message is an image buffer
-  const imageBuffer = Buffer.from(binaryData);
-  console.log('Received image buffer:', binaryData);
-
-  // Broadcast the image buffer to all connected clients
-  io.emit('image', imageBuffer.toString('base64'));
+  // Broadcast the Base64-encoded image to all connected clients
+  io.emit('image', base64Image);
 });
+
 
 
 const port = 3001;
