@@ -1,0 +1,25 @@
+{
+    "faceAnnotations": [],
+    "landmarkAnnotations": [],
+    "logoAnnotations": [],
+    "labelAnnotations": [],
+    "textAnnotations": [],
+    "localizedObjectAnnotations": [
+      {
+        "mid": "/m/01g317",
+        "languageCode": "",
+        "name": "Person",
+        "score": 0.5023643970489502,
+        "boundingPoly": {}
+      }
+    ],
+    "safeSearchAnnotation": null,
+    "imagePropertiesAnnotation": null,
+    "error": null,
+    "cropHintsAnnotation": null,
+    "fullTextAnnotation": null,
+    "webDetection": null,
+    "productSearchResults": null,
+    "context": null
+  }
+  

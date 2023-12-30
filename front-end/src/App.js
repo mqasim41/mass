@@ -1,19 +1,25 @@
-import './App.css'
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
+import Login from "./pages/loginForm";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Register from "./pages/registerForm";
+import Dashboard from "./pages/dashboard";
+import './styles/tailwind.css';
 
-function App() 
-{
+// const PrivateRoute = ({ element: Element, ...rest }) => 
+// {
+//   const isAuthenticated = !!localStorage.getItem('accessToken');
+//   return isAuthenticated ? <Element {...rest} /> : <Navigate to="/login" />;
+// };
+
+function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route exact path="/dashboard" element={<Dashboard/>} />
-        <Route path="/" element={<Login/>} />
+      	<Route path='/register' element={<Register/>}/>
+        <Route path="/login" element={<Login />}/>
+      
+        <Route path="/dashboard" element={<Dashboard />}/>
       </Routes>
-    </Router>
-    
+    </BrowserRouter>
   );
 }
 

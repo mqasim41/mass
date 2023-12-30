@@ -11,11 +11,8 @@ const app = express();
 app.use(cors());
 const server = http.createServer(app);
 
-// Use cors middleware
-app.use(cors());
-
 // MQTT broker settings
-const mqttBroker = 'mqtt://34.122.153.163';
+const mqttBroker = 'mqtt://104.154.108.229';
 const mqttTopic = 'toImageTopic'; // Adjust to match the ESP32 topic
 
 const mqttClient = mqtt.connect(mqttBroker);
