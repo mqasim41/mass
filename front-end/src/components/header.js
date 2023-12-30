@@ -2,6 +2,13 @@ import { Link } from 'react-router-dom';
 
 function Header()
 {
+  const handleLogout = () => 
+  {
+    // Clear the access token from local storage
+    localStorage.removeItem('accessToken');
+    console.log('removed token');
+  };
+
 	return(
 		<div className="">
 		  <ul className="d-block nav nav-underline bg-secondary nav-secondary p-3 d-flex justify-content-between">
@@ -17,7 +24,7 @@ function Header()
 		      </li>
 		    </div>
 		    <div className="d-flex align-items-center">
-		      <Link className="nav-link text-white" style={{ fontSize: '1rem' }} to="/login">Logout</Link>
+		      <Link className="nav-link" style={{ fontSize: '1.5rem', color:'orange' }} to="/login" onClick={handleLogout}>Logout</Link>
 		    </div>
 		  </ul>
 		</div>

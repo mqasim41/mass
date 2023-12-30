@@ -4,20 +4,14 @@ import Register from "./pages/registerForm";
 import Dashboard from "./pages/dashboard";
 import './styles/tailwind.css';
 
-// const PrivateRoute = ({ element: Element, ...rest }) => 
-// {
-//   const isAuthenticated = !!localStorage.getItem('accessToken');
-//   return isAuthenticated ? <Element {...rest} /> : <Navigate to="/login" />;
-// };
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
       	<Route path='/register' element={<Register/>}/>
         <Route path="/login" element={<Login />}/>
-      
         <Route path="/dashboard" element={<Dashboard />}/>
+        <Route path="*" element={<p>There's nothing here: 404!</p>} />
       </Routes>
     </BrowserRouter>
   );

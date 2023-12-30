@@ -10,25 +10,11 @@ const Login = () =>
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("accessToken");
 
-  // useEffect(() =>
-  // {
-  //   if (accessToken) 
-  //   {
-  //     navigate('/dashboard'); // Redirect to dashboard if already authenticated
-  //   }
-  // }, [accessToken, navigate]);
-
   const handleSubmit = async (e) => 
   {
     e.preventDefault();
     try 
     {
-      // if (accessToken) 
-      // {
-      //     navigate('/dashboard'); // Redirect to dashboard if already authenticated
-      //     return;
-      // }
-
       const response = await fetch('http://localhost:5000/api/login',
        {
         method: 'POST',
@@ -47,6 +33,8 @@ const Login = () =>
       }
 
       const data = await response.json();
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
       console.log(data); // Handle success data or store token
 
       // Redirect to dashboard upon successful login
