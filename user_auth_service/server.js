@@ -3,7 +3,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const app = express();
+const app = express(); 
 const uri =
     'mongodb+srv://mqasim41:lA983MUT87GJCSEB@mass0.acsrwmt.mongodb.net/?retryWrites=true&w=majority';
 // Connect to MongoDB
@@ -17,7 +17,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   app.use(cors(
   {
     origin: 'http://localhost:3000',
-    methods: ['GET', 'POST'], // Add other methods if needed
+    methods: ['GET', 'POST', 'FETCH'], // Add other methods if needed
     credentials: true,        // Enable credentials 
   }));
 

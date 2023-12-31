@@ -10,14 +10,21 @@ const app = express();
 const server = http.createServer(app);
 
 // Configure CORS with specific options
-const corsOptions = {
-  origin: 'http://127.0.0.1:3000', // Specify the actual URL of your React app
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204,
-};
+// const corsOptions = {
+//   origin: 'http://127.0.0.1:3000', // Specify the actual URL of your React app
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true,
+//   optionsSuccessStatus: 204,
+// };
 
-app.use(cors(corsOptions));
+  app.use(cors(
+  {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'FETCH'], // Add other methods if needed
+    credentials: true,        // Enable credentials 
+  }));
+
+//app.use(cors(corsOptions));
 app.use(express.json()); // Parse JSON bodies
 
 connectDB();
