@@ -7,8 +7,9 @@ const videoFrameSchema = new Schema({
   user: String,
   camera: String,
   image: String,
-  alert: {
-    type: Schema.Types.ObjectId,
+  alert: 
+  {
+    type: Schema.Types.ObjectId, 
     ref: 'Alert'
   }
 }, { timestamps: true });

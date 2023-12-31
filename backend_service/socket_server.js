@@ -119,6 +119,16 @@ mqttClient.on('message', async (topic, message) => {
       });
 
       await frame.save();
+
+      // Backend setup: Emit notification to the frontend
+      const notificationData = 
+      {
+        message: 'A Person Has Been Detected',
+        cameraId: '1',
+        frameUrl: frame.url, // Include the URL of the video frame
+        alertId: alert._id,
+      };
+      socket.emit('newAlert', notificationData);
     }
 
     userIo.to(topic).volatile.emit(topic, { base64Image: annotatedImage, objectsDetected });

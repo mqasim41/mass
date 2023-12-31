@@ -21,14 +21,6 @@ app.use(cors(corsOptions));
 
 DBConnect();
 
-app.post('/login', async (req, res) => {
-  // Your login logic here
-});
-
-app.post('/register', async (req, res) => {
-  // Your registration logic here
-});
-
 app.get('/get-alerts', async (req, res) => {
   try {
     console.log("Request received on alerts");
