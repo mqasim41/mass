@@ -19,6 +19,8 @@
   <li> Ardiono for image capturing and sending </li>
 </ul>
 
+<h1> Architectural Diagram </h1>
+![image](https://github.com/mqasim41/mass/assets/107126273/0ca6b660-0931-44a9-ac2a-85848f17438c)
 
 <h3> Implementation </h3>
 The landing page for the website is the Login Page where the user has to login and authenticate himself. On each login the user gets assigned a refresh and access token that gets stored in the database. 
