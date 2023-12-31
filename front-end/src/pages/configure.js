@@ -12,7 +12,7 @@ function Configure()
     e.preventDefault();
    try 
     {
-      const response = await fetch('http://localhost:5000/api/configure', 
+      const response = await fetch('http://localhost:3003/api/configure', 
       {
         method: 'POST',
         headers: 
