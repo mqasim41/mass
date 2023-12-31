@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import FormHeader from '../components/form_header';
 
@@ -8,7 +8,6 @@ const Login = () =>
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const accessToken = localStorage.getItem("accessToken");
 
   const handleSubmit = async (e) => 
   {
@@ -35,7 +34,7 @@ const Login = () =>
       const data = await response.json();
       localStorage.setItem('accessToken', data.accessToken);
       localStorage.setItem('refreshToken', data.refreshToken);
-      console.log(data); // Handle success data or store token
+      //console.log(data); // Handle success data or store token
 
       // Redirect to dashboard upon successful login
       navigate('/dashboard');
@@ -61,6 +60,7 @@ const Login = () =>
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                required
               />
             </div>
             <div className="form-group">
@@ -70,12 +70,13 @@ const Login = () =>
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
             <div className="row justify-content-between">
               <div className="col-auto">
                 <button className="btn btn-outline-secondary mt-3" type="submit">Login</button>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {error && <p style={{ color: 'red', marginTop:'1rem' }}>Invalid credentials</p>}
               </div>
               <div className="row mt-3">
                 <Link to="/register" style={{fontSize:'1vw'}}>Dont have an account?</Link>
