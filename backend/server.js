@@ -4,9 +4,10 @@ const authRoutes = require('./routes/authRoutes');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-
+const uri =
+    'mongodb+srv://mqasim41:lA983MUT87GJCSEB@mass0.acsrwmt.mongodb.net/?retryWrites=true&w=majority';
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/Authentication', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => 
 {
   // Middleware
