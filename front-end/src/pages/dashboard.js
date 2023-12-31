@@ -8,8 +8,8 @@ import '../styles/styles.css';
 
 function Dashboard() 
 {
-	//const isAuthenticated = !!localStorage.getItem('accessToken');
-	const isAuthenticated = true;
+	const isAuthenticated = !!localStorage.getItem('accessToken');
+	//const isAuthenticated = true;
 	console.log(isAuthenticated);
 	const navigate = useNavigate();
 	useEffect(() => 
@@ -18,14 +18,9 @@ function Dashboard()
         navigate('/login'); 
  	}, [isAuthenticated, navigate]);
 
-	const handleLogout = () =>
-	{
-		localStorage.removeItem('accessToken');
-		navigate('/login');
-	}
 	return (
 		<div className="bg-gray-400 text-white" style={{ minHeight:"100vh" }}>
-			< Header handleLogout={handleLogout} />
+			< Header />
 			<div className="heading">
 				<h1 className="display-4 m-3 mt-5"> Dashboard </h1>
 			</div>

@@ -13,7 +13,6 @@ const Register = () =>
   const handleSubmit = async (e) => 
   {
     e.preventDefault();
-    const accessToken = localStorage.getItem('accessToken');
     try 
     {
       const response = await fetch('http://localhost:5000/api/register', 

@@ -1,13 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {useEffect} from 'react';
 
 function Header()
 {
-  const handleLogout = () => 
-  {
-    // Clear the access token from local storage
-    localStorage.removeItem('accessToken');
-    console.log('removed token');
-  };
+
+	const isAuthenticated = !!localStorage.getItem('accessToken');
+	//const isAuthenticated = true;
+	console.log(isAuthenticated);
+	const navigate = useNavigate();
+	useEffect(() => 
+	{
+	  if (!isAuthenticated) 
+	    navigate('/login'); 
+		}, [isAuthenticated, navigate]);
+    const handleLogout = () => 
+    {
+      // Clear the access token from local storage
+      localStorage.removeItem('accessToken');
+      console.log('removed token');
+    };
 
 	return(
 		<div className="">

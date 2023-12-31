@@ -1,10 +1,14 @@
+import { Link } from 'react-router-dom';
+// import io from 'socket.io-client';
 
-function Alert()
+function Alert({data})
 {
 	return(
-		<div className="container bg-orange-500 mb-1 py-2" style={{borderRadius:'1rem'}}>
-			alert
-		</div>
+		<Link to="{}">
+			<div className="container bg-orange-500 mb-1 py-2 link" style={{borderRadius:'1rem'}}>
+				  { data.message }
+			</div>
+		</Link>
 	);
 }
 
