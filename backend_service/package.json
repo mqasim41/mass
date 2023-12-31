@@ -1,28 +1,66 @@
 {
   
   "name": "your-project-name",
+  
   "version": "1.0.0",
+  
   "description": "Your project description",
+  
   "main": "mqtt_publisher_server.js",
+  
   "scripts": {
-    "start": "node mqtt_publisher_server.js"
+  
+    
+  "start": "node mqtt_publisher_server.js"
+  
   },
+  
   "keywords": [],
+  
   "author": "Your Name",
+  
   "license": "ISC",
+  
   "dependencies": {
-    "@google-cloud/vision": "^4.0.2",
-    "axios": "^0.24.0",
-    "base-64": "^1.0.0",
-    "base64-js": "^1.5.1",
-    "canvas": "^2.11.2",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "fluent-ffmpeg": "^2.1.2",
-    "mongodb": "^6.3.0",
-    "mongoose": "^8.0.3",
-    "mqtt": "^4.3.8",
-    "node-webcam": "^0.8.2",
-    "socket.io": "4.7.2"
+  
+    
+  "@google-cloud/vision": "^4.0.2",
+  
+    
+  "axios": "^0.24.0",
+  
+    
+  "base-64": "^1.0.0",
+  
+    
+  "base64-js": "^1.5.1",
+  
+    
+  "canvas": "^2.11.2",
+  
+    
+  "cors": "^2.8.5",
+  
+    
+  "express": "^4.17.1",
+  
+    
+  "fluent-ffmpeg": "^2.1.2",
+  
+    
+  "mongodb": "^6.3.0",
+  
+    
+  "mongoose": "^8.0.3",
+  
+    
+  "mqtt": "^4.3.8",
+  
+    
+  "node-webcam": "^0.8.2",
+  
+    
+  "socket.io": "4.7.2"
+  
   }
 }

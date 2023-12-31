@@ -1,8 +1,9 @@
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
+const Module = require('./models/Module');
 const VideoFrame = require('./models/VideoFrame.js').VideoFrame;
-const { connectDB } = require('./config/db.js');
+const connectDB = require('./config/db.js');
 const { Alert } = require('./models/Alert.js');
 
 const app = express();
@@ -10,14 +11,14 @@ const server = http.createServer(app);
 
 // Configure CORS with specific options
 const corsOptions = {
-  origin: '*', // Allow requests from any origin
+  origin: 'http://127.0.0.1:3000', // Specify the actual URL of your React app
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204,
 };
 
-
 app.use(cors(corsOptions));
+app.use(express.json()); // Parse JSON bodies
 
 connectDB();
 
@@ -29,6 +30,20 @@ app.get('/get-alerts', async (req, res) => {
     const alerts = await Alert.find().sort({ createdAt: -1 }).limit(10);
 
     res.json({ alerts });
+  } catch (error) {
+    console.error('Error fetching video frames:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/get-configs', async (req, res) => {
+  try {
+    console.log("Request received on config");
+    
+    
+    const config = await Module.find();
+
+    res.json({ config });
   } catch (error) {
     console.error('Error fetching video frames:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });

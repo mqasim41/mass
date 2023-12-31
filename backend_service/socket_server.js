@@ -1,6 +1,6 @@
 const VideoFrame = require('./models/VideoFrame.js').VideoFrame;
 const Alert = require('./models/Alert.js').Alert;
-const { connectDB } = require('./config/db.js');
+const connectDB  = require('./config/db.js');
 const express = require('express');
 const app = express();
 const vision = require('@google-cloud/vision');
@@ -26,7 +26,8 @@ mqttClient.on('connect', () => {
 
 const io = require('socket.io')(3001, {
   cors: {
-    origin: ['http://localhost:3000'],
+    origin: ['http://127.0.0.1:3000'],
+    
   },
 });
 
@@ -126,9 +127,9 @@ mqttClient.on('message', async (topic, message) => {
         frameUrl: frame.url, // Include the URL of the video frame
         alertId: alert._id,
       };
-      socket.emit('newAlert', notificationData);
+     
     }
-
+    userIo.to(topic).volatile.emit('newAlert',notificationData);
     userIo.to(topic).volatile.emit(topic, { base64Image: annotatedImage, objectsDetected });
   } catch (error) {
     console.error('Error during object detection:', error.message);
