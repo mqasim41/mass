@@ -98,30 +98,7 @@ router.post('/register', async (req, res) =>
   }
 });
 
-// Configure
-router.post('/configure', async (req, res) => 
-{
-  const { cameraName, cameraLocation } = req.body;
 
-  try 
-  {
-    const existingCamera = await Module.findOne({ cameraName });
-    // if (existingCamera) 
-    // {
-    //   return res.status(400).json({ message: 'Camera already exists' });
-    // }
-
-    const newModule = new Module({ cameraName, cameraLocation });
-    await newModule.save();
-
-
-    res.status(201).json({ cameraName, cameraLocation, message: 'Module registered successfully' });
-  } 
-  catch (error) 
-  {
-    res.status(500).json({ message: error.message });
-  }
-});
 
 // Token verification middleware
 function authenticateToken(req, res, next) {

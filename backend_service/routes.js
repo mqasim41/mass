@@ -2,7 +2,7 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const VideoFrame = require('./models/VideoFrame.js').VideoFrame;
-const { DBConnect } = require('./database/database.js');
+const { connectDB } = require('./config/db.js');
 const { Alert } = require('./models/Alert.js');
 
 const app = express();
@@ -19,7 +19,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-DBConnect();
+connectDB();
 
 app.get('/get-alerts', async (req, res) => {
   try {
@@ -65,7 +65,35 @@ app.get('/refresh-token', async (req, res) => {
   // Your refresh-token logic here
 });
 
+// Configure
+app.post('/configure', async (req, res) => 
+{
+  const { cameraName, cameraLocation } = req.body;
+
+  try 
+  {
+    const existingCamera = await Module.findOne({ cameraName });
+    // if (existingCamera) 
+    // {
+    //   return res.status(400).json({ message: 'Camera already exists' });
+    // }
+
+    const newModule = new Module({ cameraName, cameraLocation });
+    await newModule.save();
+
+
+    res.status(201).json({ cameraName, cameraLocation, message: 'Module registered successfully' });
+  } 
+  catch (error) 
+  {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 const port = 3003;
 server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+
+

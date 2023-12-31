@@ -1,6 +1,6 @@
 const VideoFrame = require('./models/VideoFrame.js').VideoFrame;
 const Alert = require('./models/Alert.js').Alert;
-const { DBConnect } = require('./database/database.js');
+const { connectDB } = require('./config/db.js');
 const express = require('express');
 const app = express();
 const vision = require('@google-cloud/vision');
@@ -9,13 +9,11 @@ const cors = require('cors');
 const mqtt = require('mqtt');
 const { createCanvas, loadImage } = require('canvas');
 
-process.env.TZ = 'Asia/Karachi';
-
 const visionClient = new vision.ImageAnnotatorClient({
   keyFilename: 'mass.json', // Replace with your keyfile path
 });
 
-DBConnect();
+connectDB();
 
 const mqttBroker = 'mqtt://34.28.207.68';
 
