@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import Header from '../components/header';
 import '../styles/styles.css';
 
 function Configure()
 {
+	 useEffect(() => 
+	 {
+    // Set the title when the component mounts
+    document.title = 'Add Configuration';
+
+    // Optionally, clear the title when the component unmounts
+    return () => 
+    {
+      document.title = 'Original Page Title';
+    };
+  }, []);
+
 	  const [cameraName, setCameraName] = useState('');
 	  const [cameraLocation, setCameraLocation] = useState('');
 	  const [error, setError] = useState(null);
-	const handleSubmit = async (e) => 
+	  const handleSubmit = async (e) => 
   {
     e.preventDefault();
    try 

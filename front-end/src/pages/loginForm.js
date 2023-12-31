@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import FormHeader from '../components/form_header';
 
@@ -8,6 +8,18 @@ const Login = () =>
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+     useEffect(() => 
+   {
+    // Set the title when the component mounts
+    document.title = 'Login';
+
+    // Optionally, clear the title when the component unmounts
+    return () => 
+    {
+      document.title = '';
+    };
+  }, []);
 
   const handleSubmit = async (e) => 
   {

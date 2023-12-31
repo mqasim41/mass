@@ -25,13 +25,10 @@ function Header()
 		  <ul className="d-block nav nav-underline bg-secondary nav-secondary p-3 d-flex justify-content-between">
 		    <div className="d-flex align-items-center">
 		      <li className="nav-item px-2">
-		         <Link className="nav-link active text-white" to="./pages/logout" style={{ fontSize: '1rem' }}>Dashboard</Link>
+		         <Link className="nav-link text-white" to="../Dashboard" style={{ fontSize: '1rem' }}>Dashboard</Link>
 		      </li>
 		      <li className="nav-item px-2">
-		         <Link className="nav-link text-white" to="./pages/logout" style={{ fontSize: '1rem' }}>Link1</Link>
-		      </li>
-		      <li className="nav-item px-2">
-		         <Link className="nav-link text-white" to="./pages/logout" style={{ fontSize: '1rem' }}>Link2</Link>
+		         <Link className="nav-link text-white" to="../configure" style={{ fontSize: '1rem' }}>Add Configuration</Link>
 		      </li>
 		    </div>
 		    <div className="d-flex align-items-center">
