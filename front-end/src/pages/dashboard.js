@@ -8,6 +8,16 @@ import '../styles/styles.css';
 
 function Dashboard() 
 {
+	 useEffect(() => 
+	 {
+	    // Set the title when the component mounts
+	    document.title = 'Dashboard';
+
+	    return () => {
+	      document.title = '';
+	    };
+	  }, []);
+
 	const isAuthenticated = !!localStorage.getItem('accessToken');
 	//const isAuthenticated = true;
 	console.log(isAuthenticated);

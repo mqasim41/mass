@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import FormHeader from '../components/form_header';
 
 const Register = () => 
 {
+
+	useEffect(() => 
+	 {
+	// Set the title when the component mounts
+	document.title = 'Register';
+
+	// Optionally, clear the title when the component unmounts
+	return () => 
+	{
+	  document.title = '';
+	};
+	}, []);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
